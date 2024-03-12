@@ -1,0 +1,75 @@
+﻿@page "/"
+@using FitnessTracker;
+
+<PageTitle>Fitness Tracker</PageTitle>
+<div class="home">
+
+    <div class="form">
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" @bind="gender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="@Gender.Male">Male</option>
+                <option value="@Gender.Female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" @bind="age" />
+        </div>
+
+        <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input type="number" class="form-control" @bind="height" />
+        </div>
+
+        <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" class="form-control" @bind="weight" />
+        </div>
+
+        <div class="form-group">
+            <label for="activityLevel">Activity Level</label>
+            <select class="form-control" @bind="activityLevel">
+                <option value="" disabled selected>Select Activity Level</option>
+                <option value="@ActivityLevel.Sedentary">Sedentary</option>
+                <option value="@ActivityLevel.LightlyActive">Lightly Active</option>
+                <option value="@ActivityLevel.ModeratelyActive">Moderately Active</option>
+                <option value="@ActivityLevel.VeryActive">Very Active</option>
+                <option value="@ActivityLevel.ExtremelyActive">Extremely Active</option>
+            </select>
+        </div>
+      
+        <div class="result">
+            <p>Daily Calorie Intake: @result</p>
+        </div>
+
+        <button class="btn btn-primary" @onclick="CalculateCalories">Calculate</button>
+
+    </div>
+
+
+    <img src="Images/fitness.png" style="width:500px; height:500px;" alt="Fitness Image" />
+
+</div>
+@code {
+    private Gender? gender;
+    private double age;
+    private double height;
+    private double weight;
+    private ActivityLevel? activityLevel;
+    private double result = 0;
+
+    private void CalculateCalories()
+    {
+        var fitnessInfoInstance = new FitnessTracker.FitnessInfo(
+            gender: gender?? Gender.Male,
+            age: age,
+            height: height,
+            weight: weight,
+            activityLevel: activityLevel?? ActivityLevel.Sedentary
+        );
+        result = fitnessInfoInstance.CalculateDailyCalorieIntake();
+    }
+}
