@@ -57,14 +57,37 @@ h1:focus {
     padding: 120px 150px;
 }
 
-.form-control {
+
+
+.form-control, .form-select {
     border-radius: 15px;
-    border: 3px;
-    background-color: #62C0F533;
-    
+    border: 3px solid rgba(40, 107, 144, 0.15);
+    background-color: rgba(98, 192, 245, 0.2);
+    height: 60px;
 }
 
-.label{
+.form-select::selection{
+    opacity: 0.3;
+    font-size: 20px;
 
 }
+.form-control::placeholder{
+    opacity: 0.3;
+    font-size: 20px;
+    padding-left: 5px;
+
+}
+
+
+label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+    padding-bottom: 20px;
+}
+
+
+
+
+
 
